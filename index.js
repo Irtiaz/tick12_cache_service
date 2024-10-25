@@ -1,13 +1,13 @@
 // index.js
 const express = require("express");
 const bodyParser = require("body-parser");
-const { bookSeat, getBookedSeats } = require("./controller");
+const { bookSeat, getBookedSeats, cancelSeat } = require("./controller");
 
 const { pool } = require("./database/pool.js");
 const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 8005;
 
 // CORS options
 const corsOptions = {

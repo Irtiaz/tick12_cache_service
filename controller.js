@@ -197,4 +197,4 @@ async function releaseLock(lock) {
 	*/
 }
 
-module.exports = { bookSeat, getBookedSeats };
+module.exports = { bookSeat, getBookedSeats, cancelSeat };

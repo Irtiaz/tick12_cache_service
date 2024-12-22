@@ -21,6 +21,12 @@ const generateHash = (trainId, seatNumber, date, time) => {
 const bookSeat = async (req, res) => {
 	const { train_id, seat_number, date, time } = req.body;
 
+	if(!train_id || !seat_number || !date || !time){
+		return res
+				.status(400)
+				.json({ message: "Booking unsuccessful: provide all fields", success: false });
+	}
+
 	// Generate a unique hash for the booking
 	const uniqueValue = generateHash(train_id, seat_number, date, time);
 	console.log(`Generated unique value: ${uniqueValue}`); // Log the unique value
@@ -69,6 +75,12 @@ const bookSeat = async (req, res) => {
 // Controller function to handle seat cancellation
 const cancelSeat = async (req, res) => {
 	const { train_id, seat_number, date, time } = req.body;
+
+	if(!train_id || !seat_number || !date || !time){
+		return res
+				.status(400)
+				.json({ message: "Booking unsuccessful: provide all fields", success: false });
+	}
 
 	// Generate a unique hash for the booking
 	const uniqueValue = generateHash(train_id, seat_number, date, time);

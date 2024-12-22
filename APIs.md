@@ -1,65 +1,102 @@
 # API Documentation
 
-### Get Trains Based On Certain Crieteria
-
+### Book Seat
 **Endpoint:**  
-`https://district12.xyz/api/trains/get`
+`https://district12.xyz/cache/api/book-seat`
 
 **Local Dev Endpoint:**  
-`http://localhost:8005/api/trains/get`
+`http://localhost:8000/api/book-seat`
 
 **Method:**  
 `POST`
 
 **Body:**
-
 ```json
 {
-  "from_station_name": "Dhaka",
-  "to_station_name": "Khulna",
-  "date": "2024-10-25"
+  "train_id": "0c355a51-ebb3-4082-a262-703a09273801",
+  "seat_number": "Khulna",
+  "date": "2024-10-25",
+  "time": "11:00:00",
 }
 ```
 
-**Response:**
+**Response on Success:**
 
-**Status Code: 201**
-
-**Returns an array of trains**
-
+**Status Code: 200**
 ```json
 {
-  [
-    {
-        "train_id": "0c355a51-ebb3-4082-a262-703a09273801",
-        "train_name": "A",
-        "departure_time": "10:00:00"
-    },
-    {
-        "train_id": "0c355a51-ebb3-4082-a262-703a09273802",
-        "train_name": "B",
-        "departure_time": "11:00:00"
-    }
-  ]
+  "message": "Booking successful",
+  "success": true,
 }
 ```
 
-**Invalid Request:**
+**Response on Failure:**
 
-**Status Code: 405**
-
+**Status Code: 400**
 ```json
 {
-  "error": "Invalid request method."
+  "message": "Booking unsuccessful: Seat already booked",
+  "success": false,
 }
 ```
 
 **Error:**
 
-**Status Code: 400**
-
+**Status Code: 500**
 ```json
 {
-  "error": "error message"
+  "message": "Server error",
+  "success": null,
+}
+```
+
+
+### Cancel Seat
+**Endpoint:**  
+`https://district12.xyz/cache/api/cancel-seat`
+
+**Local Dev Endpoint:**  
+`http://localhost:8005/api/cancel-seat`
+
+**Method:**  
+`POST`
+
+**Body:**
+```json
+{
+  "train_id": "0c355a51-ebb3-4082-a262-703a09273801",
+  "seat_number": "Khulna",
+  "date": "2024-10-25",
+  "time": "11:00:00",
+}
+```
+
+**Response on Success:**
+
+**Status Code: 200**
+```json
+{
+  "message": "Cancellation successful",
+  "success": true,
+}
+```
+
+**Response on Failure:**
+
+**Status Code: 400**
+```json
+{
+  "message": "Cancellation unsuccessful: Seat not booked",
+  "success": false,
+}
+```
+
+**Error:**
+
+**Status Code: 500**
+```json
+{
+  "message": "Server error",
+  "success": null,
 }
 ```

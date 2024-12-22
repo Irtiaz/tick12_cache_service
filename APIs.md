@@ -5,7 +5,7 @@
 `https://district12.xyz/cache/api/book-seat`
 
 **Local Dev Endpoint:**  
-`http://localhost:8000/api/book-seat`
+`http://localhost:8005/api/book-seat`
 
 **Method:**  
 `POST`

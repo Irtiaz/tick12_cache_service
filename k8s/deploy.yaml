@@ -1,0 +1,38 @@
+# cache-service Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tick12-cache-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cache
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: cache
+    spec:
+      containers:
+        - name: tick12-cache-service
+          image: ishrakadit07/tick12_cache_service
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8005
+          envFrom:
+            - configMapRef:
+                name: template-config
+            - secretRef:
+                name: postgres-secret
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

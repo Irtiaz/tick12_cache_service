@@ -1,0 +1,13 @@
+# cache-service Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: tick12-cache-service
+spec:
+  selector:
+    app: cache
+  ports:
+    - protocol: TCP
+      port: 8005
+      targetPort: 8005
+  type: ClusterIP

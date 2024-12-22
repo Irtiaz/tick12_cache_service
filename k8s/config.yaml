@@ -1,0 +1,22 @@
+# ConfigMap for API URLs and Redis/Database Configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: template-config
+data:
+  AUTH_SERVICE_URL: "https://services.district12.xyz/auth"
+  VITE_AUTH_API_URL: "https://services.district12.xyz/auth"
+  VITE_TICKET_API_URL: "https://services.district12.xyz/ticket"
+  VITE_PRICE_API_URL: "https://services.district12.xyz/price"
+  VITE_TRAIN_API_URL: "https://services.district12.xyz/train"
+  VITE_CACHE_API_URL: "https://services.district12.xyz/cache"
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-secret
+type: Opaque
+data:
+  POSTGRES_PASSWORD: QVZOU19XdW5kSDhpM2hIdFZJblRLZFhr

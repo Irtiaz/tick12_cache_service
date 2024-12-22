@@ -4,6 +4,9 @@ const bodyParser = require("body-parser");
 const { bookSeat, getBookedSeats, cancelSeat } = require("./controller");
 
 const { pool } = require("./database/pool.js");
+const { sql, requestHandler } = require("./database/neon/pool.js");
+
+
 const cors = require("cors");
 
 const app = express();
@@ -24,14 +27,15 @@ app.options("*", cors(corsOptions));
 console.log("Trying to connect to PostgreSQL");
 
 // Check the PostgreSQL connection
-pool.connect(async (err, client, release) => {
-  if (err) {
-    return console.error("Error acquiring client", err.stack);
-  }
-  console.log("Connected to PostgreSQL pool");
-  release(); // release the client back to the pool
-});
+// pool.connect((err, client, release) => {
+//   if (err) {
+//     return console.error("Error acquiring client", err.stack);
+//   }
+//   console.log("Connected to PostgreSQL pool");
+//   release(); // release the client back to the pool
+// });
 
+requestHandler();
 
 // Middleware
 app.use(bodyParser.json());

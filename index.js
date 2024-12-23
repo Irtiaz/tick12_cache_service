@@ -3,8 +3,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { bookSeat, getBookedSeats, cancelSeat } = require("./controller");
 
-const { pool } = require("./database/pool.js");
-const { sql, requestHandler } = require("./database/neon/pool.js");
+// const { pool } = require("./database/pool.js");
+// const { sql, requestHandler } = require("./database/neon/pool.js");
 
 
 const cors = require("cors");
@@ -35,7 +35,7 @@ console.log("Trying to connect to PostgreSQL");
 //   release(); // release the client back to the pool
 // });
 
-requestHandler();
+// requestHandler();
 
 // Middleware
 app.use(bodyParser.json());
